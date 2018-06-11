@@ -1,0 +1,85 @@
+<?php include "template/conf.php"; ?> <!DOCTYPE html>
+<html lang="en">
+<?php
+include "template/head.php";
+?>
+<body>
+
+    <!-- *** TOPBAR ***
+ _________________________________________________________ -->
+    <div id="top">
+        <?php
+        include "template/top-bar.php";
+        include "template/modal-login.php";
+        ?>
+    </div>
+
+    <!-- *** TOP BAR END *** -->
+
+    <!-- *** NAVBAR ***
+ _________________________________________________________ -->
+
+    <div class="navbar navbar-default yamm" role="navigation" id="navbar">
+        <div class="container">
+            <?php
+            include "template/navbar.php";
+            ?>
+        </div>
+    </div>
+    <div id="all">
+        <div id="content">
+
+			<div id="hot">
+                <div class="container">
+                    <div class="product-slider owl-carousel owl-theme" style="display: block; opacity: 1;">
+						<div class="owl-wrapper-outer">
+							<div class="owl-wrapper">
+								<div class="owl-item" style="width: 228px;"><div class="item" style="visibility: visible;">
+                            <div class="product">
+                                <div class="flip-container">
+                                    <div class="flipper">
+                                        <div class="front">
+                                            <a href="detail.html">
+                                                <img src="img/product1.jpg" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                        <div class="back">
+                                            <a href="detail.html">
+                                                <img src="img/product1_2.jpg" alt="" class="img-responsive">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <a href="detail.html" class="invisible">
+                                    <img src="img/product1.jpg" alt="" class="img-responsive">
+                                </a>
+                                <div class="text">
+                                    <h3><a href="detail.html">Fur coat with very but very very long name</a></h3>
+                                    <p class="price">$143.00</p>
+                                </div>
+                                <!-- /.text -->
+                            </div>
+                            <!-- /.product -->
+                        </div>
+                        </div>
+							</div>
+						</div>
+                    </div>
+                    <!-- /.product-slider -->
+                </div>
+                <!-- /.container -->
+
+            </div>
+         
+        </div>
+    </div>
+		<?php
+        include "template/footer-atas.php";
+        include "template/footer-bawah.php";
+        ?>
+
+    </div>
+		<?php
+		include "template/javascript.php";
+		?>
+</body></html>

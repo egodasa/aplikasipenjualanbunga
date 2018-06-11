@@ -1,0 +1,47 @@
+<?php
+include "menu.php"; 
+include "koneksi.php"; 
+include "db.php";
+?>
+<div class="container-fluid bg-3 text-center">    
+<?php
+$q= $_SERVER['QUERY_STRING'];
+parse_str($q,$param);
+$page = $param['page'] ?: 1;
+$select = "select * from produk limit 4 offset ".($page-1)*4;
+$totalhalaman = count($db->from('produk')->many());
+$totalhalaman = ceil($totalhalaman/4);
+$query_tampilkan = mysql_query($select);
+while($hasil = mysql_fetch_array($query_tampilkan)) 
+ {
+?>
+<div class="container">    
+  <div class="row">
+    <div class="col-sm-3">
+	  <div class="panel panel-primary">
+	  <div class="panel-heading"><?php echo $hasil['nm_produk']; ?></div>
+      <div class="panel-body"><img src="produk/<?php echo $hasil['gambar']; ?>" width="200" height="300"  alt="Image">
+      <div class="panel-footer">Rp <?php echo $hasil['harga']; ?><br/><?php echo $hasil['deskripsi']; ?><br/><a class="btn btn-success" style="width:100%;" href="pesanProduk.php?id_produk=<?php echo $hasil['id_produk']; ?>">Pesan</a></div>
+    </div>
+   </div>
+  </div>
+<?php
+}
+?>
+</div>
+<div class="row">
+<div class="col-xs-12">
+  <ul class="pagination">
+  <?php 
+  for($x = 0; $x < $totalhalaman; $x++){
+	echo '<li><a href="?page='.($x+1).'">'.($x+1).'</a><li>';  
+  }
+  ?>
+  </div>
+</div>
+<footer class="container-fluid text-center">
+  <p>Toko Buk May Flowers Copyright 2017 created by Afdhal Trianda</p>  
+</footer>
+
+</body>
+</html>
