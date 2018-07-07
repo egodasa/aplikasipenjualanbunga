@@ -46,6 +46,7 @@
 						?>
 	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/daftarPesanan.php" class="nav-link"><i class="fa fa-list"></i> Kelola Pesanan</a></li>
 	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/laporanTransaksi.php" class="nav-link"><i class="fa fa-list"></i> Laporan Transaksi</a></li>
+	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/laporanproduk.php" class="nav-link"><i class="fa fa-list"></i> Laporan Produk</a></li>
 						<li class="dropdown-item"><a href="<?php echo $base_url;?>/kelolaUser.php" class="nav-link"><i class="fa fa-user"></i> Kelola User</a></li>
 						<li class="dropdown-item"><a href="<?php echo $base_url;?>/kelolaLevelUser.php" class="nav-link"><i class="fa fa-user"></i> Kelola Level User</a></li>
 						<li class="dropdown-item"><a href="<?php echo $base_url;?>/kelolaProduk.php" class="nav-link"><i class="fa fa-list"></i> Kelola Produk</a></li>

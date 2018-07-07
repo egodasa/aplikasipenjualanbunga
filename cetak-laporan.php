@@ -42,8 +42,24 @@ if(isset($_GET['laporan'])){
         case "bulanan" : 
             $tableConf = array(
                 array(
-                    "name"		=>	"hari",
-                    "caption"	=>	"Tanggal"
+                    "name"		=>	"id_pesan",
+                    "caption"	=>	"No Faktur"
+                ),
+                array(
+                    "name"		=>	"bulan",
+                    "caption"	=>	"Bulan"
+                ),
+                array(
+                    "name"		=>	"nm_produk",
+                    "caption"	=>	"Nama Produk"
+                ),
+                array(
+                    "name"		=>	"jumlah",
+                    "caption"	=>	"Jumlah"
+                ),
+                array(
+                    "name"		=>	"harga",
+                    "caption"	=>	"Harga"
                 ),
                 array(
                     "name"		=>	"total_harga",
@@ -51,7 +67,7 @@ if(isset($_GET['laporan'])){
                 )
             );
             $judul = "Laporan Penjualan Bulan ".date("F Y");
-            $dataTable = $db->sql('select day(a.tgl_pesan) as `hari`,sum(a.jumlah*c.harga) as `total_harga` from pesanan a join user b on a.id_user = b.id_user join produk c on a.id_produk = c.id_produk where month(a.tgl_pesan) = month(now()) and year(a.tgl_pesan) = year(now()) group by day(a.tgl_pesan)')->many();
+            $dataTable = $db->sql('select a.id_pesan, month(a.tgl_pesan) as bulan, a.jumlah, c.harga, c.nm_produk, sum(a.jumlah*c.harga) as `total_harga` from pesanan a join user b on a.id_user = b.id_user join produk c on a.id_produk = c.id_produk where month(a.tgl_pesan) = 5 and year(a.tgl_pesan) = year(now())')->many();
         break;
         case "tahunan" : 
             $tableConf = array(
@@ -60,12 +76,20 @@ if(isset($_GET['laporan'])){
                     "caption"	=>	"Bulan"
                 ),
                 array(
+                    "name"		=>	"jumlah",
+                    "caption"	=>	"Jumlah"
+                ),
+                array(
+                    "name"		=>	"total_pesanan",
+                    "caption"	=>	"Total Pesanan"
+                ),
+                array(
                     "name"		=>	"total_harga",
                     "caption"	=>	"Total Pemasukan"
                 )
             );
             $judul = "Laporan Penjualan Tahun ".date("Y");
-            $dataTable = $db->sql('select month(a.tgl_pesan) as `bulan`,sum(a.jumlah*c.harga) as `total_harga` from pesanan a join user b on a.id_user = b.id_user join produk c on a.id_produk = c.id_produk where year(a.tgl_pesan) = year(now()) group by month(a.tgl_pesan)')->many();
+            $dataTable = $db->sql('select month(a.tgl_pesan) as `bulan`,sum(a.jumlah) as jumlah,count(a.id_pesan) as total_pesanan,sum(a.jumlah*c.harga) as `total_harga` from pesanan a join user b on a.id_user = b.id_user join produk c on a.id_produk = c.id_produk where year(a.tgl_pesan) = year(now()) group by month(a.tgl_pesan)')->many();
         break;
     }
 }else{
@@ -154,9 +178,11 @@ if(count($dataTable) == 0){
 			<tr>
 				<td>".$no."</td>";
 		foreach($tableConf as $t){
-			if($t['name'] == 'total_harga'){
+			if($t['name'] == 'total_harga' || $t['name'] == 'harga'){
 				$html .= "<td>Rp ".number_format($r[$t['name']],2,',','.')."</td>";
-			}else $html .= "<td>".$r[$t['name']]."</td>";
+			}else if($t['name'] == 'bulan'){
+                $html .= "<td>".namaBulan($r[$t['name']])."</td>";
+            }else $html .= "<td>".$r[$t['name']]."</td>";
 		}
 		$no++;
 		$total += $r['total_harga'];
