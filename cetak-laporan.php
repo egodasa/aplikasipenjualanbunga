@@ -37,7 +37,7 @@ if(isset($_GET['laporan'])){
                 )
             );
             $judul = "Laporan Penjualan Hari ".date("l, d F Y");
-            $dataTable = $db->sql('select *,b.nm_lengkap from pesanan join produk on pesanan.id_produk = produk.id_produk join user b on pesanan.id_user = b.id_user where day(tgl_pesan) = day(now())')->many();
+            $dataTable = $db->sql('select *,b.nm_lengkap,(pesanan.jumlah * c.harga) as total_harga from pesanan join produk on pesanan.id_produk = produk.id_produk join user b on pesanan.id_user = b.id_user join produk c on pesanan.id_produk = c.id_produk where day(tgl_pesan) = day(now())')->many();
         break;
         case "bulanan" : 
             $tableConf = array(
