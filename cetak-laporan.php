@@ -67,7 +67,7 @@ if(isset($_GET['laporan'])){
                 )
             );
             $judul = "Laporan Penjualan Bulan ".date("F Y");
-            $dataTable = $db->sql('select a.id_pesan, month(a.tgl_pesan) as bulan, a.jumlah, c.harga, c.nm_produk, sum(a.jumlah*c.harga) as `total_harga` from pesanan a join user b on a.id_user = b.id_user join produk c on a.id_produk = c.id_produk where month(a.tgl_pesan) = 5 and year(a.tgl_pesan) = year(now())')->many();
+            $dataTable = $db->sql('select a.id_pesan, month(a.tgl_pesan) as bulan, a.jumlah, c.harga, c.nm_produk, sum(a.jumlah*c.harga) as `total_harga` from pesanan a join user b on a.id_user = b.id_user join produk c on a.id_produk = c.id_produk where month(a.tgl_pesan) = month(now()) and year(a.tgl_pesan) = year(now())')->many();
         break;
         case "tahunan" : 
             $tableConf = array(
