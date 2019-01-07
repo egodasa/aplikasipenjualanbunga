@@ -45,7 +45,10 @@
 						if($_SESSION['level'] == 'Admin'){
 						?>
 	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/daftarPesanan.php" class="nav-link"><i class="fa fa-list"></i> Kelola Pesanan</a></li>
-	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/laporanTransaksi.php" class="nav-link"><i class="fa fa-list"></i> Laporan Transaksi</a></li>
+                      <li class="dropdown-item"><a href="<?php echo $base_url;?>/laporanTransaksi.php" class="nav-link"><i class="fa fa-list"></i> Laporan Transaksi Keseluruhan</a></li>
+	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/laporan-harian.php" class="nav-link"><i class="fa fa-list"></i> Laporan Transaksi Harian</a></li>
+	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/laporan-bulanan.php" class="nav-link"><i class="fa fa-list"></i> Laporan Transaksi Bulanan</a></li>
+	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/laporan-tahunan.php" class="nav-link"><i class="fa fa-list"></i> Laporan Transaksi Tahunan</a></li>
 	                    <li class="dropdown-item"><a href="<?php echo $base_url;?>/laporanproduk.php" class="nav-link"><i class="fa fa-list"></i> Laporan Produk</a></li>
 						<li class="dropdown-item"><a href="<?php echo $base_url;?>/kelolaUser.php" class="nav-link"><i class="fa fa-user"></i> Kelola User</a></li>
 						<li class="dropdown-item"><a href="<?php echo $base_url;?>/kelolaLevelUser.php" class="nav-link"><i class="fa fa-user"></i> Kelola Level User</a></li>

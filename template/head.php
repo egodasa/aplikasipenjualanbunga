@@ -31,6 +31,7 @@
 
     <!-- your stylesheet with modifications -->
     <link href="<?php echo $base_url;?>/css/custom.css" rel="stylesheet">
+    <link href="<?php echo $base_url;?>/css/pikaday.css" rel="stylesheet">
 
     <script src="<?php echo $base_url;?>/js/respond.min.js"></script>
 

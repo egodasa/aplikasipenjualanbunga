@@ -5,6 +5,10 @@ $judul = "Laporan Transaksi";
 include "koneksi.php"; 
 include "db.php";
 include "template/head.php";
+$waktu = date("Y-m-d");
+if(isset($_POST['waktu']) && !empty($_POST['waktu'])){
+  $waktu = $_POST['waktu'];
+}
 ?>
 	<body>
 		<div id="top">
@@ -26,7 +30,21 @@ include "template/head.php";
 					
 					<!-- CONTENT -->
 						<div class="box">
-                            <h2>Laporan Transaksi Keseluruhan</h2>
+                            <h2>Laporan Transaksi Harian Tanggal <?=tanggal_indo($waktu)?></h2>
+                            <form action="" method="POST">
+                              <div class="form-group">
+                                <label class="form-label">
+                                  Pilih Tanggal
+                                </label>
+                                <div class="input-group input-group-sm">
+                                  <input class="form-control" type="text" id="waktu" name="waktu" value="<?=$waktu?>" readonly />
+                                  <span class="input-group-btn">
+                                    <button type="submit" class="btn btn-info btn-flat">Tampilkan</button>
+                                    <a href="cetak-laporan-harian.php?waktu=<?=$waktu?>" target="_blank" class="btn btn-success btn-flat">Cetak</a>
+                                  </span>
+                                </div>
+                              </div>
+                            </form>
 							<div class="table-responsive">
                             <table class="table table-hover">
                                 <thead>
@@ -42,7 +60,7 @@ include "template/head.php";
                                 <tbody>
 									<?php
 									$id_user=$_SESSION['id_user'];
-									$select = "select produk.nm_produk,pesanan.tgl_pesan,pesanan.alamat,pesanan.status,pesanan.nomor_hp, (produk.harga*pesanan.jumlah)+kota.tarif as total from pesanan left join produk on pesanan.id_produk=produk.id_produk join kota on pesanan.id_kota = kota.id_kota where pesanan.status = 'Sudah Selesai'"; 
+									$select = "select produk.nm_produk,pesanan.tgl_pesan,pesanan.alamat,pesanan.status,pesanan.nomor_hp, (produk.harga*pesanan.jumlah)+kota.tarif as total from pesanan left join produk on pesanan.id_produk=produk.id_produk join kota on pesanan.id_kota = kota.id_kota where pesanan.status = 'Sudah Selesai' AND date(pesanan.tgl_pesan) = '$waktu'"; 
 									$query_tampilkan = mysql_query($select);
 									$no=1;
 									$total = 0;
@@ -82,6 +100,12 @@ include "template/head.php";
 		<?php
 		include "template/javascript.php";
 		?>
+    <script>
+      var tanggal = new Pikaday({
+        field: document.getElementById('waktu'),
+        format: 'YYYY-MM-DD',
+      });
+    </script>
 	</body>
 
 </html>

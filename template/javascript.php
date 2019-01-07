@@ -15,3 +15,6 @@
     <script src="<?php echo $base_url;?>/js/bootstrap-hover-dropdown.js"></script>
     <script src="<?php echo $base_url;?>/js/owl.carousel.min.js"></script>
     <script src="<?php echo $base_url;?>/js/front.js"></script>
+    
+    <script src="<?php echo $base_url;?>/js/moment.js"></script>
+    <script src="<?php echo $base_url;?>/js/pikaday.js"></script>
